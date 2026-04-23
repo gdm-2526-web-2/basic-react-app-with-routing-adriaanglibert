@@ -1,3 +1,4 @@
+import { ROUTES } from "../../constants";
 import Button from "../Button/Button";
 import CustomLink from "../CustomLink/CustomLink";
 import Logo from "../Logo/Logo";
@@ -13,13 +14,13 @@ const Nav = () => {
         </ul>
         <ul>
           <li>
-            <CustomLink link="#" label="Home" />
+            <CustomLink link={ROUTES.HOME} label="Home" />
           </li>
           <li>
-            <CustomLink link="#" label="Articles" />
+            <CustomLink link={ROUTES.ARTICLES} label="Articles" />
           </li>
           <li>
-            <CustomLink link="#" label="About" />
+            <CustomLink link={ROUTES.ABOUT} label="About" />
           </li>
           <li>
             <Button type="secondary" link="tel:+1234567890">

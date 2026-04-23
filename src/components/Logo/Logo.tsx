@@ -1,10 +1,12 @@
+import { Link } from "react-router";
 import LogoIcon from "../../assets/artevelde.svg";
+import { ROUTES } from "../../constants";
 
 const Logo = () => {
   return (
-    <a href="/">
+    <Link to={ROUTES.HOME}>
       <LogoIcon />
-    </a>
+    </Link>
   );
 };
 

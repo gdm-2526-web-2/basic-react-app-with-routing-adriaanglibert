@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 type LinkProps = {
   link: string;
   label: string;
@@ -6,9 +8,9 @@ type LinkProps = {
 
 const CustomLink = ({ link, label, target }: LinkProps) => {
   return (
-    <a className="contrast" href={link} target={target}>
+    <Link className="contrast" to={link} target={target}>
       {label}
-    </a>
+    </Link>
   );
 };
 
