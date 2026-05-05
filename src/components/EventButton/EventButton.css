@@ -1,0 +1,11 @@
+.btn {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.btn--primary {
+  background-color: cadetblue;
+}
+
+.btn--secondary {
+  background-color: bisque;
+}
