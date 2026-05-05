@@ -1,34 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import Heading from "../Heading/Heading";
 import EventButton from "../EventButton/EventButton";
-
-type Votes = {
-  [key in (typeof courses)[number]["id"]]: number;
-};
-
-const courses = [
-  {
-    label: "Web 2",
-    id: "web-2",
-  },
-  {
-    label: "Tech 2",
-    id: "tech-2",
-  },
-  {
-    label: "Dev 2",
-    id: "dev-2",
-  },
-];
-
-const defaultVotes = {
-  "web-2": 0,
-  "tech-2": 0,
-  "dev-2": 0,
-};
+import voteReducer from "../../app/votes";
+import { courses, defaultVotes } from "../../app/voteData";
 
 const Voter = () => {
-  const [votes, setVotes] = useState<Votes>(defaultVotes);
+  const [votes, dispatch] = useReducer(voteReducer, defaultVotes);
 
   const webVotes = votes["web-2"];
 
@@ -42,13 +19,6 @@ const Voter = () => {
 
   const getTotalVotes = () => {
     return Object.values(votes).reduce((total, value) => total + value, 0);
-  };
-
-  const handleVoting = (id: string) => {
-    setVotes({
-      ...votes,
-      [id]: votes[id] + 1,
-    });
   };
 
   return (
@@ -65,7 +35,14 @@ const Voter = () => {
 
             <EventButton
               label={`Vote for ${course.label}`}
-              onClick={() => handleVoting(course.id)}
+              onClick={() => dispatch({ type: "VOTE", payload: course.id })}
+            />
+
+            <EventButton
+              label={`Remove vote for ${course.label}`}
+              onClick={() =>
+                dispatch({ type: "REMOVE_VOTE", payload: course.id })
+              }
             />
           </article>
         ))}
